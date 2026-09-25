@@ -1,0 +1,50 @@
+name: Build Desktop App
+
+# Builds SmartFileOrganizer for both macOS and Windows automatically.
+# Runs on every push to main, or manually from the Actions tab.
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            artifact_name: SmartFileOrganizer-Windows
+            build_path: dist/SmartFileOrganizer.exe
+            data_separator: ";"
+          - os: macos-latest
+            artifact_name: SmartFileOrganizer-macOS
+            build_path: dist/SmartFileOrganizer.app
+            data_separator: ":"
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install PyInstaller
+        run: pip install pyinstaller
+
+      - name: Build app
+        run: >
+          pyinstaller --windowed --onefile
+          --name "SmartFileOrganizer"
+          --add-data "config.json${{ matrix.data_separator }}."
+          gui.py
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact_name }}
+          path: ${{ matrix.build_path }}

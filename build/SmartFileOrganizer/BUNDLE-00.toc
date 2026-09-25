@@ -1,0 +1,4 @@
+([('SmartFileOrganizer',
+   '/Users/harsh/PYTHON LEARN/Real Projects/File '
+   'Organizer/dist/SmartFileOrganizer',
+   'EXECUTABLE')],)

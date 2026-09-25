@@ -23,13 +23,14 @@ from pathlib import Path
 from datetime import datetime
 
 
-LOG_DIR = Path("logs")
+APP_DATA_DIR = Path.home() / ".smart-file-organizer"
+LOG_DIR = APP_DATA_DIR / "logs"
 MOVEMENTS_FILE = LOG_DIR / "movements.json"
 LOG_FILE = LOG_DIR / "organizer.log"
 
 
 def setup_logging():
-    LOG_DIR.mkdir(exist_ok=True)
+    LOG_DIR.mkdir(parents=True, exist_ok=True)
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s | %(levelname)s | %(message)s",
@@ -77,7 +78,7 @@ def unique_destination(dest: Path) -> Path:
 
 
 def record_movement(entry: dict):
-    MOVEMENTS_FILE.parent.mkdir(exist_ok=True)
+    MOVEMENTS_FILE.parent.mkdir(parents=True, exist_ok=True)
     history = []
     if MOVEMENTS_FILE.exists():
         with open(MOVEMENTS_FILE, "r", encoding="utf-8") as f:
@@ -107,7 +108,7 @@ def organize(folder: str, config: dict, dry_run: bool = False):
 
     if not files:
         logging.info("No files to organize. Folder is already clean.")
-        return
+        return summary
 
     logging.info(f"Scanning '{target}' -- {len(files)} file(s) found.")
 
@@ -138,6 +139,8 @@ def organize(folder: str, config: dict, dry_run: bool = False):
         print("\n(dry run -- no files were actually moved)")
     else:
         print(f"\nRun ID: {run_id}  (use this with undo.py to reverse this run)")
+
+    return summary
 
 
 def main():

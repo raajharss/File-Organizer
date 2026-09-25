@@ -61,6 +61,53 @@ python undo.py --run <id>   # undo one specific run (shown after each run)
 python undo.py --all        # undo everything ever recorded
 ```
 
+## GUI mode (no terminal required)
+
+For non-technical users, `gui.py` provides a clean point-and-click
+interface over the same logic — choose a folder, toggle dry-run,
+click a button.
+
+```bash
+python3 gui.py
+```
+
+The GUI uses Tk's `clam` theme rather than each OS's native theme,
+because macOS's native theme is known to ignore custom button colors
+in certain states (why button text can vanish on click). `clam`
+renders identically and reliably on both macOS and Windows.
+
+## Packaging as a standalone app (Mac / Windows)
+
+This turns the tool into a real double-clickable app — the person
+running it needs no Python, no terminal, and no VS Code.
+
+**Important:** PyInstaller cannot cross-build. Build the Mac app on a
+Mac, and the Windows app on a Windows machine.
+
+**On Mac:**
+```bash
+chmod +x build_mac.sh
+./build_mac.sh
+```
+Produces `dist/SmartFileOrganizer.app`. On first launch, macOS will
+block it as unidentified — right-click the app > Open, once, to
+approve it (only needed the first time, since the app isn't Apple
+Developer-notarized).
+
+**On Windows:**
+```bat
+build_windows.bat
+```
+Produces `dist\SmartFileOrganizer.exe`. Windows SmartScreen may warn
+on first run since it isn't code-signed — click "More info" > "Run
+anyway."
+
+**Where data is stored:** logs and undo history are saved to
+`~/.smart-file-organizer/` in the user's home folder (not next to the
+app), so the packaged app works correctly no matter where it's
+launched from — an .app bundle is read-only, so it can't write logs
+inside itself.
+
 ## Customizing rules
 
 Edit `config.json`. Example — add a "Design" category:

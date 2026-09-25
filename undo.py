@@ -14,14 +14,13 @@ import shutil
 import argparse
 from pathlib import Path
 
-LOG_DIR = Path("logs")
+LOG_DIR = Path.home() / ".smart-file-organizer" / "logs"
 MOVEMENTS_FILE = LOG_DIR / "movements.json"
 
 
 def load_history() -> list:
     if not MOVEMENTS_FILE.exists():
-        print("No movement history found. Nothing to undo.")
-        sys.exit(0)
+        return []
     with open(MOVEMENTS_FILE, "r", encoding="utf-8") as f:
         return json.load(f)
 
@@ -59,7 +58,7 @@ def main():
 
     history = load_history()
     if not history:
-        print("Movement history is empty. Nothing to undo.")
+        print("No movement history found. Nothing to undo.")
         return
 
     if args.all:
