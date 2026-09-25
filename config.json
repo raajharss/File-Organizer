@@ -1,0 +1,13 @@
+{
+  "categories": {
+    "Images": ["jpg", "jpeg", "png", "gif", "bmp", "svg", "webp"],
+    "Documents": ["pdf", "doc", "docx", "txt", "md", "xlsx", "ppt", "pptx", "csv"],
+    "Videos": ["mp4", "mkv", "mov", "avi", "webm"],
+    "Audio": ["mp3", "wav", "flac", "m4a"],
+    "Archives": ["zip", "rar", "7z", "tar", "gz"],
+    "Code": ["py", "js", "html", "css", "json", "java", "cpp", "c"],
+    "Installers": ["exe", "msi", "dmg", "apk"]
+  },
+  "fallback_category": "Others",
+  "ignore_files": [".gitkeep", ".DS_Store", "config.json"]
+}

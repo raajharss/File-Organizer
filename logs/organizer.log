@@ -1,0 +1,21 @@
+2026-09-25 14:30:55,465 | INFO | Scanning '/Users/harsh/PYTHON LEARN/Real Projects/File Organizer/test_folder' -- 6 file(s) found.
+2026-09-25 14:30:55,465 | INFO | [DRY RUN] Would move: notes.txt -> Documents/
+2026-09-25 14:30:55,465 | INFO | [DRY RUN] Would move: photo.jpg -> Images/
+2026-09-25 14:30:55,465 | INFO | [DRY RUN] Would move: archive.zip -> Archives/
+2026-09-25 14:30:55,465 | INFO | [DRY RUN] Would move: report.pdf -> Documents/
+2026-09-25 14:30:55,465 | INFO | [DRY RUN] Would move: song.mp3 -> Audio/
+2026-09-25 14:30:55,465 | INFO | [DRY RUN] Would move: movie.mp4 -> Videos/
+2026-09-25 14:32:20,314 | INFO | Scanning '/Users/harsh/PYTHON LEARN/Real Projects/File Organizer/test_folder' -- 6 file(s) found.
+2026-09-25 14:32:20,314 | INFO | Moved: notes.txt -> Documents/notes.txt
+2026-09-25 14:32:20,314 | INFO | Moved: photo.jpg -> Images/photo.jpg
+2026-09-25 14:32:20,314 | INFO | Moved: archive.zip -> Archives/archive.zip
+2026-09-25 14:32:20,315 | INFO | Moved: report.pdf -> Documents/report.pdf
+2026-09-25 14:32:20,315 | INFO | Moved: song.mp3 -> Audio/song.mp3
+2026-09-25 14:32:20,315 | INFO | Moved: movie.mp4 -> Videos/movie.mp4
+2026-09-25 14:33:36,931 | INFO | Scanning '/Users/harsh/PYTHON LEARN/Real Projects/File Organizer/test_folder' -- 6 file(s) found.
+2026-09-25 14:33:36,931 | INFO | Moved: notes.txt -> Documents/notes.txt
+2026-09-25 14:33:36,932 | INFO | Moved: photo.jpg -> Images/photo.jpg
+2026-09-25 14:33:36,932 | INFO | Moved: archive.zip -> Archives/archive.zip
+2026-09-25 14:33:36,932 | INFO | Moved: report.pdf -> Documents/report.pdf
+2026-09-25 14:33:36,932 | INFO | Moved: song.mp3 -> Audio/song.mp3
+2026-09-25 14:33:36,932 | INFO | Moved: movie.mp4 -> Videos/movie.mp4
