@@ -8,7 +8,7 @@ echo "Installing PyInstaller..."
 pip3 install --upgrade pyinstaller
 
 echo "Building SmartFileOrganizer.app..."
-pyinstaller --windowed --onefile \
+pyinstaller --windowed --noconfirm \
   --name "SmartFileOrganizer" \
   --add-data "config.json:." \
   gui.py

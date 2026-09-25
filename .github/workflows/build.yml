@@ -11,16 +11,20 @@ on:
 jobs:
   build:
     strategy:
+      fail-fast: false
       matrix:
         include:
           - os: windows-latest
             artifact_name: SmartFileOrganizer-Windows
             build_path: dist/SmartFileOrganizer.exe
-            data_separator: ";"
+            # Windows: --onefile is fine and standard for a single .exe
+            pyinstaller_args: --onefile --windowed --noconfirm --name "SmartFileOrganizer" --add-data "config.json;." gui.py
           - os: macos-latest
             artifact_name: SmartFileOrganizer-macOS
             build_path: dist/SmartFileOrganizer.app
-            data_separator: ":"
+            # macOS: --onefile + a .app bundle is deprecated by PyInstaller itself.
+            # Omitting --onefile uses the recommended onedir mode instead.
+            pyinstaller_args: --windowed --noconfirm --name "SmartFileOrganizer" --add-data "config.json:." gui.py
 
     runs-on: ${{ matrix.os }}
 
@@ -37,11 +41,7 @@ jobs:
         run: pip install pyinstaller
 
       - name: Build app
-        run: >
-          pyinstaller --windowed --onefile
-          --name "SmartFileOrganizer"
-          --add-data "config.json${{ matrix.data_separator }}."
-          gui.py
+        run: pyinstaller ${{ matrix.pyinstaller_args }}
 
       - name: Upload build
         uses: actions/upload-artifact@v4

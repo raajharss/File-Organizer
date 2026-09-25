@@ -6,7 +6,7 @@ echo Installing PyInstaller...
 pip install --upgrade pyinstaller
 
 echo Building SmartFileOrganizer.exe...
-pyinstaller --windowed --onefile ^
+pyinstaller --windowed --onefile --noconfirm ^
   --name "SmartFileOrganizer" ^
   --add-data "config.json;." ^
   gui.py
