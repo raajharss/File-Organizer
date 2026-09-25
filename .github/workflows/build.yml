@@ -21,7 +21,7 @@ jobs:
             pyinstaller_args: --onefile --windowed --noconfirm --name "SmartFileOrganizer" --add-data "config.json;." gui.py
           - os: macos-latest
             artifact_name: SmartFileOrganizer-macOS
-            build_path: dist/SmartFileOrganizer.app
+            build_path: dist/SmartFileOrganizer-macOS.zip
             # macOS: --onefile + a .app bundle is deprecated by PyInstaller itself.
             # Omitting --onefile uses the recommended onedir mode instead.
             pyinstaller_args: --windowed --noconfirm --name "SmartFileOrganizer" --add-data "config.json:." gui.py
@@ -42,6 +42,14 @@ jobs:
 
       - name: Build app
         run: pyinstaller ${{ matrix.pyinstaller_args }}
+
+      - name: Zip macOS app bundle
+        if: matrix.os == 'macos-latest'
+        # A .app is a folder, not a single file. GitHub's artifact uploader
+        # flattens folders instead of preserving them as one double-clickable
+        # unit -- zipping it ourselves with ditto (Apple's recommended tool
+        # for this, preserves metadata plain zip can lose) keeps it intact.
+        run: ditto -c -k --sequesterRsrc --keepParent dist/SmartFileOrganizer.app dist/SmartFileOrganizer-macOS.zip
 
       - name: Upload build
         uses: actions/upload-artifact@v4
