@@ -132,3 +132,11 @@ but constant time sink — exactly the kind of repetitive task that's
 worth automating first. This was built as the first proof-of-work
 project in a self-directed AI/automation learning path (Python →
 SQL/Data Analysis → ML → Deep Learning → Generative & Agentic AI).
+
+## Download For Macos
+
+https://github.com/raajharss/File-Organizer/releases/download/File_Organizer/SmartFileOrganizer-macOS-app.zip
+
+## Download For Windows
+
+https://github.com/raajharss/File-Organizer/releases/download/File_Organizer/SmartFileOrganizer.exe
